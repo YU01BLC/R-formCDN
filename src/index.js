@@ -1,17 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
+import styled from 'styled-components';
 import reportWebVitals from './reportWebVitals';
+import NoMatch from './view/noMatch';
+import HeaderNavContents from './view/formComponent/header';
+// import HomeComponent from './view/homeComponent/home';
+// import LoginComponent from './view/loginComponent/loginPage';
+// import SignUpComponent from './view/loginComponent/singUp';
+import FormComponent from './view/formComponent/form';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const App = () => {
+  return (
+    <RecoilRoot>
+      <BrowserRouter>
+        <Container>
+          <HeaderNavContents />
+          <Routes>
+            {/* <Route path="/signUp" element={<SignUpComponent />} />
+            <Route path="/home" element={<HomeComponent />} />
+            <Route path="/" element={<LoginComponent />} /> */}
+            <Route path="/form" element={<FormComponent />} />
+            <Route path="*" element={<NoMatch />} />
+          </Routes>
+        </Container>
+      </BrowserRouter>
+    </RecoilRoot>
+  );
+};
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+const Container = styled.div``;
+
+ReactDOM.render(<App />, document.getElementById('root'));
+
 reportWebVitals();
