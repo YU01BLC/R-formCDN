@@ -13,7 +13,8 @@ npm i
 npm start
 ```
 
-// PR template
+# PR template
+```
 # PR title
 
 ## PR contents
@@ -34,3 +35,4 @@ hogehoge
 ## In the middle of work
 - piyo
 - piyo
+```
