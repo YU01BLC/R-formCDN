@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
 const HeaderNavContents = () => {
   return (
@@ -10,16 +10,16 @@ const HeaderNavContents = () => {
       </Link>
       <RightColumn>
         <NavLink to="/home">Home</NavLink>
-        <NavLink to="/form">Link</NavLink>
-        <NavLink href="#hoge">Hoge</NavLink>
+        <NavLink to="/form">Form</NavLink>
+        <NavLink to="/">login</NavLink>
         <FormControl type="text" placeholder="Search" />
         <Button>Search</Button>
       </RightColumn>
     </HeaderNav>
-  );
-};
+  )
+}
 
-export default HeaderNavContents;
+export default HeaderNavContents
 
 //style
 const HeaderNav = styled.div`
@@ -27,7 +27,7 @@ const HeaderNav = styled.div`
   display: flex;
   height: 60px;
   position: relative;
-`;
+`
 const Icon = styled.img`
   width: 120px;
   height: 50px;
@@ -35,7 +35,7 @@ const Icon = styled.img`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-`;
+`
 const RightColumn = styled.div`
   display: flex;
   position: absolute;
@@ -44,20 +44,13 @@ const RightColumn = styled.div`
   @media (max-width: 768px) {
     display: none;
   }
-`;
-// const NavLink = styled(Link)`
-//   text-decoration: none;
-//   color: white;
-//   font-size: 18px;
-//   font-weight: 900;
-//   padding: 0 10px;
-// `;
-const NavLink = styled.div`
+`
+const NavLink = styled(Link)`
   text-decoration: none;
   color: white;
   font-size: 18px;
   font-weight: 900;
   padding: 0 10px;
-`;
-const FormControl = styled.input``;
-const Button = styled.button``;
+`
+const FormControl = styled.input``
+const Button = styled.button``

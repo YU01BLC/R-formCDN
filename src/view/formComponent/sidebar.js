@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react'
+import styled from 'styled-components'
 
 const SidebarContents = () => {
-  const [view, setView] = useState(false);
+  const [view, setView] = useState(false)
 
   return (
     <Wrapper>
@@ -19,8 +19,8 @@ const SidebarContents = () => {
         </Dialog>
       </Nav>
     </Wrapper>
-  );
-};
+  )
+}
 
 //style
 const Wrapper = styled.div`
@@ -31,7 +31,7 @@ const Wrapper = styled.div`
   @media (max-width: 768px) {
     display: none;
   }
-`;
+`
 
 const Nav = styled.div`
   background-color: white;
@@ -39,12 +39,12 @@ const Nav = styled.div`
   padding: 10px;
   float: right;
   width: 20%;
-`;
+`
 
 const Add = styled.div`
   padding: 8px;
   background-color: darkgrey;
-`;
+`
 
 const Dialog = styled.div`
   display: none;
@@ -52,11 +52,11 @@ const Dialog = styled.div`
   &&&.showDialog {
     display: initial;
   }
-`;
+`
 const ItemList = styled.div`
   display: flex;
   flex-wrap: wrap;
-`;
+`
 
 const Item = styled.p`
   border-radius: 10px;
@@ -65,6 +65,6 @@ const Item = styled.p`
   margin-right: 10px;
   cursor: pointer;
   background-color: #cccdcf;
-`;
+`
 
-export default SidebarContents;
+export default SidebarContents
