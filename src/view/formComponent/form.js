@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { selector, useRecoilValue, useSetRecoilState } from 'recoil';
-import styled from 'styled-components';
-import SidebarContents from './sidebar';
-import initialState from '../atoms/recoilState';
+import React, { useState, useEffect } from 'react'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import styled from 'styled-components'
+import SidebarContents from './sidebar'
+import initialState from '../atoms/recoilState'
 
 const FormComponent = () => {
-  const [headText, setHeadText] = useState('');
-  const [subHead, setSubHead] = useState('');
-  const [mainText, setMainText] = useState('');
-  const [fileUrl, setFileUrl] = useState(null);
-  const [formNum, setFormNum] = useState(0);
+  const [headText, setHeadText] = useState('')
+  const [subHead, setSubHead] = useState('')
+  const [mainText, setMainText] = useState('')
+  const [fileUrl, setFileUrl] = useState(null)
+  const [formNum, setFormNum] = useState(0)
 
-  const formList = useRecoilValue(initialState.formListState);
-  const setFormList = useSetRecoilState(initialState.formListState);
+  const formList = useRecoilValue(initialState.formListState)
+  const setFormList = useSetRecoilState(initialState.formListState)
 
   useEffect(() => {
-    setFormList((formList) => [...formList, {}]);
-  }, []);
+    setFormList((formList) => [...formList, {}])
+  }, [])
 
   const addItem = () => {
     if (1000 > formNum) {
-      setFormNum(formNum + 1);
+      setFormNum(formNum + 1)
     }
     setFormList((oldFormList) => [
       ...oldFormList,
@@ -29,24 +29,24 @@ const FormComponent = () => {
         sub: subHead,
         text: mainText,
         img: fileUrl,
-        isComplete: false
-      }
-    ]);
-    setHeadText('');
-    setSubHead('');
-    setMainText('');
-    setFileUrl(null);
-  };
+        isComplete: false,
+      },
+    ])
+    setHeadText('')
+    setSubHead('')
+    setMainText('')
+    setFileUrl(null)
+  }
   const handleSetText = ({ target: { value } }) => {
-    setMainText(value);
-  };
+    setMainText(value)
+  }
 
   const handleImage = (event) => {
-    const imageFile = event.target.files[0];
-    const imageUrl = URL.createObjectURL(imageFile);
-    setFileUrl(imageUrl);
-  };
-  console.log(formNum);
+    const imageFile = event.target.files[0]
+    const imageUrl = URL.createObjectURL(imageFile)
+    setFileUrl(imageUrl)
+  }
+  console.log(formNum)
   return (
     <Wrapper>
       <SidebarContents />
@@ -64,7 +64,7 @@ const FormComponent = () => {
                 <DelIcon
                   src="image/deleteIcon.png"
                   onClick={() => {
-                    document.querySelector('.wrapper').remove();
+                    document.querySelector('.wrapper').remove()
                   }}
                 />
               </Toolber>
@@ -73,7 +73,7 @@ const FormComponent = () => {
                 type="text"
                 placeholder="Add heading"
                 onChange={(e) => {
-                  setHeadText(e.target.value);
+                  setHeadText(e.target.value)
                 }}
               />
               <SubHead>SubHead (h3)</SubHead>
@@ -81,7 +81,7 @@ const FormComponent = () => {
                 type="text"
                 placeholder="Add SubHeading"
                 onChange={(e) => {
-                  setSubHead(e.target.value);
+                  setSubHead(e.target.value)
                 }}
               />
               <SubHead>MainText (p)</SubHead>
@@ -107,17 +107,17 @@ const FormComponent = () => {
         ))}
       </FormWrapper>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default FormComponent;
+export default FormComponent
 
 //style
 const Wrapper = styled.div`
   @media (max-width: 768px) {
     margin: 0 10px;
   }
-`;
+`
 const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -126,7 +126,7 @@ const FormWrapper = styled.div`
   @media (max-width: 768px) {
     width: 100%;
   }
-`;
+`
 const Form = styled.input`
   border: solid darkgrey;
   font-weight: 600;
@@ -134,50 +134,50 @@ const Form = styled.input`
   flex-grow: 1;
   height: 40px;
   outline: none;
-`;
+`
 
 const ComponentWrapper = styled.div`
   background-color: white;
   position: relative;
   margin-top: 20px;
   padding: 20px 20px 70px 20px;
-`;
+`
 
 const Component = styled.div`
   display: flex;
   flex-direction: column;
-`;
+`
 
 const Toolber = styled.div`
   position: absolute;
   right: 10px;
   top: 10px;
-`;
+`
 const DelIcon = styled.img`
   height: 15px;
   margin-right: 2px;
   cursor: pointer;
-`;
+`
 
 const AddIcon = styled.img`
   height: 15px;
   margin-right: 10px;
   cursor: pointer;
-`;
+`
 
 const SubHead = styled.div`
   font-weight: 600;
   padding-right: 10px;
   color: #5e5e5e;
-`;
+`
 const Input = styled.textarea`
   flex-grow: 1;
   margin: 10px 0 20px;
-`;
+`
 
 const File = styled.input`
   display: none;
-`;
+`
 
 const SetImage = styled.p`
   border: inset 1px;
@@ -191,14 +191,14 @@ const SetImage = styled.p`
   &:hover {
     border-color: lightblue;
   }
-`;
+`
 
 const Image = styled.img`
   width: 30%;
   height: 30%;
-`;
+`
 
 const ImageSpace = styled.label`
   width: 0;
   height: 0;
-`;
+`

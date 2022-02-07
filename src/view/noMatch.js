@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
 const NoMatch = () => {
   return (
@@ -7,14 +7,14 @@ const NoMatch = () => {
       <Head>404 not found!!!!!</Head>
       <Image src="image/sorry.png" />
     </Wrapper>
-  );
-};
+  )
+}
 
-export default NoMatch;
+export default NoMatch
 
 const Wrapper = styled.div`
   text-align: center;
-`;
+`
 
 const Head = styled.div`
   padding-top: 60px;
@@ -23,7 +23,7 @@ const Head = styled.div`
   @media (max-width: 768px) {
     font-size: 30px;
   }
-`;
+`
 
 const Image = styled.img`
   height: 500px;
@@ -32,4 +32,4 @@ const Image = styled.img`
     height: 300px;
     width: 300px;
   }
-`;
+`
