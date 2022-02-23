@@ -1,110 +1,66 @@
 import React, { useState, useEffect } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import {
+  atom,
+  selector,
+  useRecoilValue,
+  useRecoilState,
+  useSetRecoilState,
+} from 'recoil'
 import styled from 'styled-components'
 import SidebarContents from './sidebar'
 import initialState from '../atoms/recoilState'
+import FormContents from '../formComponent/formContents'
 
 const FormComponent = () => {
+  // localState
   const [headText, setHeadText] = useState('')
-  const [subHead, setSubHead] = useState('')
+  const [subHeadText, setSubHeadText] = useState('')
   const [mainText, setMainText] = useState('')
   const [fileUrl, setFileUrl] = useState(null)
-  const [formNum, setFormNum] = useState(0)
-
-  const formList = useRecoilValue(initialState.formListState)
+  const [addContents, setAddContents] = useState('')
+  // recoilState
   const setFormList = useSetRecoilState(initialState.formListState)
+  const [formKeyNum, setFormKeyNum] = useRecoilState(
+    initialState.formKeyNumState
+  )
 
-  useEffect(() => {
-    setFormList((formList) => [...formList, {}])
-  }, [])
-
-  const addItem = () => {
-    if (1000 > formNum) {
-      setFormNum(formNum + 1)
-    }
+  const newFormId = () => {
+    setFormKeyNum(formKeyNum + 1)
+  }
+  const addFormItem = () => {
+    newFormId()
     setFormList((oldFormList) => [
       ...oldFormList,
       {
         head: headText,
-        sub: subHead,
+        sub: subHeadText,
         text: mainText,
         img: fileUrl,
         isComplete: false,
       },
     ])
     setHeadText('')
-    setSubHead('')
+    setSubHeadText('')
     setMainText('')
     setFileUrl(null)
   }
-  const handleSetText = ({ target: { value } }) => {
-    setMainText(value)
-  }
 
-  const handleImage = (event) => {
-    const imageFile = event.target.files[0]
-    const imageUrl = URL.createObjectURL(imageFile)
-    setFileUrl(imageUrl)
-  }
-  console.log(formNum)
   return (
     <Wrapper>
       <SidebarContents />
       <FormWrapper>
         <Form placeholder="Add title (h1)" />
-        {formList.map((formItem) => (
-          <ComponentWrapper
-            key={('keyNum', formNum)}
-            item={formItem}
-            className="wrapper"
-          >
-            <Component>
-              <Toolber>
-                <AddIcon src="image/addIcon.png" onClick={addItem} />
-                <DelIcon
-                  src="image/deleteIcon.png"
-                  onClick={() => {
-                    document.querySelector('.wrapper').remove()
-                  }}
-                />
-              </Toolber>
-              <SubHead>Heading (h2)</SubHead>
-              <Input
-                type="text"
-                placeholder="Add heading"
-                onChange={(e) => {
-                  setHeadText(e.target.value)
-                }}
-              />
-              <SubHead>SubHead (h3)</SubHead>
-              <Input
-                type="text"
-                placeholder="Add SubHeading"
-                onChange={(e) => {
-                  setSubHead(e.target.value)
-                }}
-              />
-              <SubHead>MainText (p)</SubHead>
-              <Input
-                type="text"
-                placeholder="Add SubText"
-                onChange={handleSetText}
-              />
-              <SubHead>image (img)</SubHead>
-              <ImageSpace>
-                <SetImage>
-                  Add Image
-                  <File
-                    type="file"
-                    className="filename"
-                    onChange={handleImage}
-                  />
-                </SetImage>
-              </ImageSpace>
-              <Image src={fileUrl} />
-            </Component>
-          </ComponentWrapper>
-        ))}
+        <AddContents>
+          <Item className={'Heading'} onClick={addFormItem}>
+            Heading
+          </Item>
+          <Item className={'SubHead'} onClick={addFormItem}>
+            SubHead
+          </Item>
+          <Item className={'MainText'}>MainText</Item>
+          <Item className={'image'}>image</Item>
+        </AddContents>
+        <FormContents />
       </FormWrapper>
     </Wrapper>
   )
@@ -118,6 +74,23 @@ const Wrapper = styled.div`
     margin: 0 10px;
   }
 `
+
+const AddContents = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  @media (max-width: 768px) {
+    margin: 0 10px;
+  }
+`
+const Item = styled.p`
+  border-radius: 10px;
+  white-space: nowrap;
+  padding: 6px;
+  margin-right: 10px;
+  cursor: pointer;
+  background-color: #cccdcf;
+`
+
 const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
