@@ -11,7 +11,7 @@ const SidebarContents = () => {
         <Dialog className={view ? 'showDialog' : ''}>
           <ItemList>
             <Item className={'itemList'}>Heading</Item>
-            <Item className={'itemList'}>Discription</Item>
+            <Item className={'itemList'}>Description</Item>
             <Item className={'itemList'}>Images</Item>
             <Item className={'itemList'}>SubHeading</Item>
             <Item className={'itemList'}>link</Item>
