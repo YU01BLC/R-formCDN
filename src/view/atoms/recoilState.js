@@ -1,18 +1,26 @@
 import { atom } from 'recoil'
 
-const formListState = atom({
-  key: 'FORM_ITEM_LIST_STATE',
-  default: [],
-})
-
 const authUserState = atom({
   key: 'AUTH_USER_STATE',
   default: '',
 })
 
+// form list
+
+const formListState = atom({
+  key: 'FORM_LIST_STATE',
+  default: [],
+})
+
+const formKeyNumState = atom({
+  key: 'FORM_KEY_NUM_STATE',
+  default: 1,
+})
+
 const initialState = {
-  formListState,
   authUserState,
+  formListState,
+  formKeyNumState,
 }
 
 export default initialState
